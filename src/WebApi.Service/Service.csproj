@@ -1,14 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
     <ProjectReference Include="..\WebApi.Domain\Domain.csproj" />
-    <ProjectReference Include="..\WebApi.Service\Service.csproj" />
-    <ProjectReference Include="..\WebApi.CrossCutting\CrossCutting.csproj" />
+    <ProjectReference Include="..\WebApi.Data\Data.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
 
 </Project>
