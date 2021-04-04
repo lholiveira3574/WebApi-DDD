@@ -26,7 +26,7 @@ namespace WebApi.Service.Services
 
         public async Task<IEnumerable<UserDto>> GetAll()
         {
-            var listEntity = await _repository.selectAsync();
+            var listEntity = await _repository.SelectAsync();
             return _mapper.Map<IEnumerable<UserDto>>(listEntity);
         }
 

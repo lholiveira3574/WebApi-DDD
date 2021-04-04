@@ -11,7 +11,7 @@ namespace WebApi.Domain.Interfaces
          Task<T> UpdateAsync(T entidade);
          Task<bool> DeleteAsync(Guid id);
          Task<T> SelectAsync(Guid id);
-         Task<IEnumerable<T>> selectAsync();
+         Task<IEnumerable<T>> SelectAsync();
          Task<bool> ExistAsync(Guid id);
     }
 }

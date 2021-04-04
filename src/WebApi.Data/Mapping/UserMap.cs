@@ -10,7 +10,7 @@ namespace WebApi.Data.Mapping
         {
             builder.ToTable("User");
 
-            builder.HasKey(u => u.id);
+            builder.HasKey(u => u.Id);
 
             builder.HasIndex(u => u.Email)
                    .IsUnique();

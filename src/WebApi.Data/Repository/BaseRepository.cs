@@ -21,7 +21,7 @@ namespace WebApi.Data.Repository
         {
             try
             {
-                var result = await _dataset.SingleOrDefaultAsync(p => p.id.Equals(id));
+                var result = await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
 
                 if (result == null)
                 {
@@ -43,9 +43,9 @@ namespace WebApi.Data.Repository
         {
             try
             {
-                if (entidade.id == Guid.Empty)
+                if (entidade.Id == Guid.Empty)
                 {
-                    entidade.id = Guid.NewGuid();
+                    entidade.Id = Guid.NewGuid();
                 }
 
                 entidade.CreateAt = DateTime.UtcNow;
@@ -63,14 +63,14 @@ namespace WebApi.Data.Repository
 
         public async Task<bool> ExistAsync(Guid id)
         {
-            return await _dataset.AnyAsync(p => p.id.Equals(id));
+            return await _dataset.AnyAsync(p => p.Id.Equals(id));
         }
 
         public async Task<T> SelectAsync(Guid id)
         {
             try
             {
-                return await _dataset.SingleOrDefaultAsync(p => p.id.Equals(id));
+                return await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
             }
             catch (Exception e)
             {
@@ -78,7 +78,7 @@ namespace WebApi.Data.Repository
             } 
         }
 
-        public async Task<IEnumerable<T>> selectAsync()
+        public async Task<IEnumerable<T>> SelectAsync()
         {
              try
             {
@@ -94,14 +94,14 @@ namespace WebApi.Data.Repository
         {
             try
             {
-                var result = await _dataset.SingleOrDefaultAsync(p => p.id.Equals(entidade.id));
+                var result = await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(entidade.Id));
 
                 if (result == null)
                 {
                     return null;
                 }
 
-                entidade.updateAt = DateTime.UtcNow;
+                entidade.UpdateAt = DateTime.UtcNow;
                 entidade.CreateAt = result.CreateAt;
 
                 _context.Entry(result).CurrentValues.SetValues(entidade);
