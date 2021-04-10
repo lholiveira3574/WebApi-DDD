@@ -55,6 +55,15 @@
                 "test",
                 "${workspaceFolder}/src/WebApi.Service.Test/WebApi.Service.Test.csproj"
             ]
+        },
+        {
+            "label": "Application.Tests",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/src/WebApi.Application.Test/WebApi.Application.Test.csproj"
+            ]
         }
     ]
 }
