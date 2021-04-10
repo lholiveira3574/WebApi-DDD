@@ -61,7 +61,7 @@ namespace WebApi.Data.Repository
             return entidade;
         }
 
-        public async Task<bool> ExistAsync(Guid id)
+        public async Task<bool> ExistsAsync(Guid id)
         {
             return await _dataset.AnyAsync(p => p.Id.Equals(id));
         }

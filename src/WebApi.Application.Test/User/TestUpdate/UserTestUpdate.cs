@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using WebApi.Application.Controllers;
@@ -39,12 +40,17 @@ namespace WebApi.Application.Test.User.TestUpdate
             };
 
             var result = await _controller.Put(userDtoUpdate);
-            Assert.True(result is OkObjectResult);
-
             var resultValue = ((OkObjectResult)result).Value as UserDtoUpdateResult;
-            Assert.NotNull(resultValue);
-            Assert.Equal(userDtoUpdate.Name, resultValue.Name);
-            Assert.Equal(userDtoUpdate.Email, resultValue.Email);
+
+            //Assert.True(result is OkObjectResult);
+            //Assert.NotNull(resultValue);
+            //Assert.Equal(userDtoUpdate.Name, resultValue.Name);
+            //Assert.Equal(userDtoUpdate.Email, resultValue.Email);
+
+            result.Should().BeOfType<OkObjectResult>();
+            resultValue.Should().NotBeNull();
+            resultValue.Name.Should().Equals(userDtoUpdate.Name);
+            resultValue.Email.Should().Equals(userDtoUpdate.Email);
         }
     }
 }

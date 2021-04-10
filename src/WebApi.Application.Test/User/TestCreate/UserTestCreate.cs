@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using WebApi.Application.Controllers;
@@ -42,13 +43,16 @@ namespace WebApi.Application.Test.User.TestCreate
             };
             
             var result = await _controller.Post(userDtoCreate);
-            Assert.True(result is CreatedResult);
-
             var resultValue = ((CreatedResult)result).Value as UserDtoCreateResult;
-            Assert.NotNull(resultValue);
-            Assert.Equal(userDtoCreate.Name, resultValue.Name);
-            Assert.Equal(userDtoCreate.Email, resultValue.Email);
-        }
 
+            //Assert.True(result is CreatedResult);
+            //Assert.NotNull(resultValue);
+            //Assert.Equal(userDtoCreate.Name, resultValue.Name);
+            //Assert.Equal(userDtoCreate.Email, resultValue.Email);
+
+           result.Should().BeOfType<CreatedResult>();
+           resultValue.Name.Should().Equals(userDtoCreate.Name);
+           resultValue.Email.Should().Equals(userDtoCreate.Email);
+        }
     }
 }

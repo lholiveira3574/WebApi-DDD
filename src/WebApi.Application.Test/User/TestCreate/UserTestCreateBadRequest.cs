@@ -43,6 +43,7 @@ namespace WebApi.Application.Test.User.TestCreate
             };
             
             var result = await _controller.Post(userDtoCreate);
+            
             Assert.True(result is BadRequestObjectResult);
             Assert.False(_controller.ModelState.IsValid);
         

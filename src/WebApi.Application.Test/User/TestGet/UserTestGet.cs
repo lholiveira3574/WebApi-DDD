@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using WebApi.Application.Controllers;
@@ -30,13 +31,19 @@ namespace WebApi.Application.Test.User.TestGet
             );
 
             _controller = new UsersController(serviceMock.Object);
-            var result = await _controller.Get(Guid.NewGuid());
-            Assert.True(result is OkObjectResult);
 
+            var result = await _controller.Get(Guid.NewGuid());
             var resultValue = ((OkObjectResult)result).Value as UserDto;
-            Assert.NotNull(resultValue);
-            Assert.Equal(name, resultValue.Name);
-            Assert.Equal(email, resultValue.Email);
+
+            //Assert.True(result is OkObjectResult);
+            //Assert.NotNull(resultValue);
+            //Assert.Equal(name, resultValue.Name);
+            //Assert.Equal(email, resultValue.Email);
+
+            result.Should().BeOfType<OkObjectResult>();
+            resultValue.Should().NotBeNull();
+            resultValue.Name.Should().Equals(name);
+            resultValue.Email.Should().Equals(email);
         }
     }
 }

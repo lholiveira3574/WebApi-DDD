@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using WebApi.Application.Controllers;
@@ -22,10 +23,13 @@ namespace WebApi.Application.Test.User.TestDelete
              _controller = new UsersController(serviceMock.Object);
 
             var result = await _controller.Delete(Guid.NewGuid());
-            Assert.True(result is OkObjectResult);
-
             var resultValue = ((OkObjectResult)result).Value;
-            Assert.NotNull(resultValue);
+
+            //Assert.True(result is OkObjectResult);
+            //Assert.NotNull(resultValue);
+
+            result.Should().BeOfType<OkObjectResult>();
+            resultValue.Should().NotBeNull();
             Assert.True((Boolean)resultValue);
         } 
     }
